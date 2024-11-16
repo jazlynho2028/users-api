@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const { Pool, Query } = require("pg");
+const { Pool } = require("pg");
 const dotenv = require("dotenv");
 
 dotenv.config();
@@ -19,6 +19,16 @@ const pool = new Pool({
 
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to your Express server" });
+});
+
+app.get("/users", async (req, res) => {
+    try {
+        const result = await pool.query("SELECT * FROM users");
+        res.json(result.rows);
+    } catch (err) {
+        console.error("Query error: ", err);
+        res.status(500).json({ error: "Failed to fetch users" });
+    }
 });
 
 const PORT = process.env.PORT || 3004;
