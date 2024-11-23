@@ -18,7 +18,7 @@ const pool = new Pool({
 });
 
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to your Express server" });
+    res.json({ message: "Welcome to your Express server" });
 });
 
 app.get("/users", async (req, res) => {
@@ -33,7 +33,7 @@ app.get("/users", async (req, res) => {
 
 const PORT = process.env.PORT || 3004;
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+    console.log(`Server is running on port ${PORT}`);
 });
 
 module.exports = app;
